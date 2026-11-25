@@ -1,0 +1,12 @@
+.venv/
+medicine_env/
+__pycache__/
+.DS_Store
+training_metrics.csv
+test_predictions.csv
+data/
+models/
+!data/splits/*_manifest.csv
+validation_predictions.csv
+validation_beam_*.csv
+MedScript_Colab_Training_fixed.zip

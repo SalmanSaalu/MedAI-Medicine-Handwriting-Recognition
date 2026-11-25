@@ -1,0 +1,6 @@
+# Colab supplies the CUDA-enabled PyTorch build.
+transformers>=4.45,<5.0
+numpy>=1.26,<3.0
+pandas>=2.1
+Pillow>=10.0
+safetensors>=0.4

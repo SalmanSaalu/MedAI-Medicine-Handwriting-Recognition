@@ -1,0 +1,63 @@
+MedScript AI: Upload-to-Output Process
+======================================
+
+Overview
+--------
+Upload image -> choose processing mode -> prepare/detect text regions
+-> TrOCR recognizes each region -> review/edit results -> download CSV
+
+1. Upload
+---------
+The app accepts PNG, JPG, or JPEG images. It corrects the image orientation
+using EXIF metadata, displays the uploaded image, and tracks it by a hash so
+results are reset when the upload changes.
+
+2. Choose a processing mode
+---------------------------
+The default mode is "Single word crop". You can also select "Horizontal text
+lines" or "Connected text fragments" for page-like images.
+
+3. Prepare the image and detect candidate regions
+-------------------------------------------------
+Single word:
+  The whole uploaded image is treated as one candidate region. It is converted
+  to grayscale; page segmentation and deskewing are not applied in this mode.
+
+Horizontal text lines / Connected text fragments:
+  The image is converted to grayscale, resized if it is very large, and lightly
+  deskewed. OpenCV image-based heuristics propose text crops. These methods can
+  miss, split, or combine writing.
+
+The app displays the candidate regions and their bounding boxes for inspection
+before recognition. The candidate-region detectors are implemented in
+src/preprocessing.py.
+
+4. Recognize each region
+------------------------
+After clicking "Recognize handwriting", the app loads the fine-tuned model in
+models/trocr-medicine if the expected checkpoint files are present. Otherwise,
+it uses microsoft/trocr-base-handwritten.
+
+TrOCR processes each crop and generates text, using beam search with 3 beams
+and a maximum of 64 new tokens. It uses CUDA when available and otherwise uses
+the CPU. The recognition wrapper is implemented in src/recognizer.py.
+
+5. Review the output
+-------------------
+Each candidate is shown with its crop, bounding box, and model prediction in an
+editable field. The app may also show nearby labels from the annotation
+vocabulary as suggestions. Suggestions are for human review and are not
+automatically substituted into the prediction.
+
+6. Download
+-----------
+The app collects each region's prediction and the user's edits, then offers
+them as medscript_results.csv.
+
+Important safety note
+---------------------
+This flow performs handwriting recognition and candidate-region detection. It
+does not reliably identify which text is a medicine name or interpret dosage
+and prescription instructions. Recognition may be incorrect. A qualified
+healthcare professional must verify all output against the original
+prescription before clinical use.

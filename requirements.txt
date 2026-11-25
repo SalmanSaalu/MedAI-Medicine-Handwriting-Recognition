@@ -1,0 +1,9 @@
+# Install PyTorch separately using the official selector so the correct
+# CPU/CUDA wheel is selected for the machine.
+transformers>=4.45,<5.0
+streamlit>=1.40
+opencv-python-headless>=4.10
+Pillow>=10.0
+numpy>=1.26,<3.0
+pandas>=2.1
+safetensors>=0.4
