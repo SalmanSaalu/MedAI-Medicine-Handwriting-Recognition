@@ -22,7 +22,8 @@ The model is fine-tuned using the RxHandBD handwritten medicine dataset. Trainin
 
 ### 📄 Project Results & Documentation
 
-- **Project Result Documents:** [View MedScript AI Project Results](https://drive.google.com/drive/folders/1Iuwi0Bb5CuypzYjrXAQQc9X_tFZSk7Qo?usp=sharing)
+- **Project Trained Model and ImageSet folder:** [View MedScript AI Training model files and the zip of the source data images](https://drive.google.com/drive/folders/1Iuwi0Bb5CuypzYjrXAQQc9X_tFZSk7Qo?usp=sharing)
+- **Project Result:**[View MedScript AI Project Results](https://docs.google.com/document/d/12KzcMEfDO3_eaiDxwUFsR-CSiU2tPjw1/edit?usp=sharing&ouid=112150240852770674706&rtpof=true&sd=true)
 
 <blockquote>
 The reported model training success rate is 68%. This is a project-reported training result and should not be interpreted as independently verified clinical accuracy or guaranteed medicine recognition accuracy.
